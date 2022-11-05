@@ -274,6 +274,7 @@ body {
 }
 .time__duration {
   width: 100%;
+  font-family: "Roboto", sans-serif;
   font-size: 3.5rem;
   font-weight: 600;
   line-height: 1;
