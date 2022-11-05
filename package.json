@@ -1,0 +1,14 @@
+{
+  "name": "live-clock",
+  "version": "1.0.0",
+  "description": "Live Clock",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass sass/main.scss css/styles.css -w"
+  },
+  "author": "CPPA",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.54.4"
+  }
+}

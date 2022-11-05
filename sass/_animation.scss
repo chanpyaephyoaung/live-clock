@@ -1,0 +1,101 @@
+.hidden {
+  display: none;
+}
+
+.header__icon--active {
+  transform: translateY(2rem);
+}
+
+.side-nav__tab__arrow--active {
+  transform: rotate(180deg);
+}
+
+// Clock Animation
+
+@keyframes clockIn {
+  // 80% {
+  //   transform: scale(0.5);
+  //   opacity: 1;
+  // }
+
+  // 100% {
+  //   transform: scale(0);
+  //   opacity: 0;
+  // }
+
+  100% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes clockOut {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin360 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+// For Clock & Time
+@keyframes moveToTop {
+  0% {
+    top: 50%;
+    transform: translateY((-50%));
+  }
+  100% {
+    top: 0;
+    transform: translateY((0));
+  }
+}
+
+@keyframes moveToBottom {
+  0% {
+    bottom: 50%;
+    transform: translateY((50%));
+  }
+  100% {
+    bottom: 0;
+    transform: translateY((0));
+  }
+}
+
+@keyframes moveBackToCenterFromTop {
+  0% {
+    top: 0;
+    transform: translateY((0));
+  }
+  100% {
+    top: 50%;
+    transform: translateY((-50%));
+  }
+}
+
+@keyframes moveBackToCenterFromBottom {
+  0% {
+    bottom: 0;
+    transform: translateY((0));
+    opacity: 1;
+  }
+  // 20% {
+  //   opacity: 0.4;
+  // }
+  100% {
+    bottom: 50%;
+    transform: translateY((50%));
+    opacity: 0;
+  }
+}

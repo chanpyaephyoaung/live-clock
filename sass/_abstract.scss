@@ -1,0 +1,62 @@
+// font-family: 'Poppins', sans-serif;
+// font-family: 'Shadows Into Light', cursive;
+
+// COLORS
+
+$color-black: #000;
+$color-dark-1: #262626;
+$color-grey: #505050;
+$color-white: #fff;
+$color-green: #09de57;
+$color-red: #ef1212;
+
+$color-clock-1: #313233;
+
+// Shadows
+
+$clock-shadow-1: 0.3rem 0 0.3rem rgba($color-black, 0.2);
+$clock-shadow-2: 1.5rem 0 1rem rgba($color-black, 0.27);
+$clock-shadow-3: 3.5rem 0 2rem rgba($color-black, 0.15);
+$header-icon-shadow-1: 0.5rem 0 1rem rgba($color-black, 0.15);
+$header-icon-shadow-2: 0.25rem 0 0.5rem rgba($color-black, 0.15);
+
+// Media Query Manager
+
+/*
+
+0 - 600px:       Phone
+600 - 900px:     Tablet Portrait
+900 - 1200px     Tablet Landscape
+1200 - 1800:     is where normal styles apply
+1800px++ :       Big Desktop
+
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800px
+  }
+}

@@ -1,0 +1,376 @@
+// Clock
+
+.clock-wrapper {
+  --clock-dimension: 24rem;
+  width: var(--clock-dimension);
+  height: calc(var(--clock-dimension) + 9rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > * {
+    position: absolute;
+  }
+
+  @include respond(phone) {
+    --clock-dimension: 21rem;
+    height: calc(var(--clock-dimension) + 9rem);
+  }
+}
+
+.clock {
+  width: var(--clock-dimension);
+  height: var(--clock-dimension);
+  background-image: url("../img/clock-1.png");
+  background-size: cover;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-filter: drop-shadow($clock-shadow-1) drop-shadow($clock-shadow-2) drop-shadow($clock-shadow-3);
+  filter: drop-shadow($clock-shadow-1) drop-shadow($clock-shadow-2) drop-shadow($clock-shadow-3);
+  overflow: hidden;
+  cursor: pointer;
+
+  &__pivot {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: $color-clock-1;
+    z-index: 11;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__hand {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-origin: bottom;
+    transform: translateX(-50%);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: $color-clock-1;
+    z-index: 10;
+    -webkit-transition: all 0.3s;
+    transition: all 0s;
+
+    &--second {
+      width: 2px;
+      height: 33%;
+      opacity: 0.9;
+
+      @include respond(phone) {
+        width: 1.5px;
+      }
+    }
+
+    &--minute {
+      width: 4px;
+      height: 26%;
+
+      @include respond(phone) {
+        width: 3.5px;
+      }
+    }
+
+    &--hour {
+      width: 5.5px;
+      height: 20%;
+
+      @include respond(phone) {
+        width: 4px;
+      }
+    }
+  }
+}
+
+// Time
+
+.time {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: -1;
+  transition: bottom 0.3s;
+
+  &__duration {
+    width: 100%;
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+
+    &__text {
+      display: inline-block;
+
+      &--number {
+        width: 22%;
+
+        @include respond(phone) {
+          width: 24%;
+        }
+      }
+
+      &--separator {
+        width: 5%;
+
+        @include respond(phone) {
+          width: 7%;
+        }
+      }
+    }
+  }
+
+  &__period {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+// Icons
+
+.icon {
+  line-height: 0;
+  display: inline-block;
+
+  &--globe,
+  &--clock {
+    font-size: 3.5rem;
+    -webkit-text-stroke: 0.5px $color-black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--timezone {
+    font-size: 3rem;
+    color: $color-white;
+  }
+
+  &--close {
+    font-size: 2.3rem;
+    color: $color-white;
+    margin-left: auto;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      font-size: 2rem;
+    }
+  }
+}
+
+// Side Navigation
+
+.side-nav {
+  --side-nav-width: 35%;
+  --side-nav-vertical-gap: 8%;
+  position: absolute;
+  top: 0;
+  left: calc(var(--side-nav-width) * -1);
+  border-radius: 0 1.5rem 1.5rem 0;
+  width: var(--side-nav-width);
+  height: 100%;
+  // box-shadow: 1rem 0 2rem rgba($color-black, 0.25), 0.25rem 0 0.5rem rgba($color-black, 0.2);
+  background-color: rgba($color-dark-1, 1);
+  padding: 5rem;
+  z-index: 100;
+  overflow: hidden;
+  transition: all 0.15s;
+
+  @include respond(tab-land) {
+    --side-nav-width: 42%;
+  }
+
+  @include respond(tab-port) {
+    --side-nav-width: 50%;
+  }
+
+  @include respond(phone) {
+    --side-nav-width: 100%;
+    border-radius: 0;
+    transition: all 0.25s;
+  }
+
+  &__toggle {
+    left: 0;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: $color-white;
+
+    &--green {
+      color: $color-green;
+      font-weight: 500;
+    }
+  }
+
+  &__contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__sub-header {
+    position: relative;
+    margin-top: 3rem;
+    // margin-bottom: 5rem;
+
+    &__revert-icon {
+      line-height: 0;
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 2.2rem;
+      color: $color-white;
+      cursor: pointer;
+
+      @include respond(tab-port) {
+        font-size: 1.9rem;
+      }
+    }
+  }
+
+  &__content-container {
+    height: 70%;
+    // height: calc(100% - var(--side-nav-headers-height));
+    overflow-y: scroll;
+    position: relative;
+    border-top: 2px solid $color-grey;
+    // border-bottom: 2px solid $color-grey;
+    margin-top: var(--side-nav-vertical-gap);
+
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+  }
+
+  &__content {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid $color-grey;
+
+    &:hover .side-nav__tab__title {
+      color: rgba($color-white, 0.7);
+    }
+
+    // &:not(:first-child) {
+    //   padding-top: 1rem;
+    // }
+  }
+
+  &__current-timezone {
+    font-size: 1.6rem;
+    display: inline-block;
+    word-wrap: break-word;
+    width: 80%;
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &__title {
+      display: flex;
+      align-items: center;
+      transition: all 0.1s;
+
+      &--active {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 800;
+        color: $color-dark-1;
+        background-color: $color-green;
+        border-radius: 100px;
+        padding: 0.05rem 0.5rem;
+        text-transform: uppercase;
+        margin-left: 2rem;
+      }
+    }
+
+    &__arrow {
+      display: inline-block;
+      font-size: 2rem;
+      color: $color-white;
+      transition: all 0.15s;
+
+      @include respond(tab-port) {
+        font-size: 1.65rem;
+      }
+    }
+  }
+
+  &__tab__content {
+    margin-top: 1.5rem;
+    transition: all 0.4s;
+
+    & > *:not(:first-child) {
+      margin-top: 0.8rem;
+    }
+  }
+
+  &__timezone {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0;
+
+    &:hover {
+      color: rgba($color-white, 0.7);
+    }
+
+    &--active {
+      display: inline-block;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: 0.4rem;
+      background-color: $color-green;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__footer-text {
+    display: inline-block;
+    color: rgba($color-white, 0.3);
+    font-size: 0.9rem;
+    margin-top: auto;
+
+    &__link {
+      &:link,
+      &:visited {
+        color: rgba($color-green, 0.5);
+        text-decoration: underline;
+      }
+
+      &:hover {
+        color: rgba($color-green, 0.6);
+      }
+    }
+  }
+}
